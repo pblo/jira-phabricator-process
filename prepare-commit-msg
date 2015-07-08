@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+
+import sys
+import precommithooks
+
+precommithooks.PreCommitHook(sys.argv[1])
+
