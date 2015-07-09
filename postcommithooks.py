@@ -11,6 +11,7 @@ class PostCommitHook():
   def __init__(self):
     self.connector = jiraconnector.JiraConnector()
     self.branch_name = check_output(['git','symbolic-ref','--short','HEAD'])
+    self.branch_name = self.branch_name.strip().decode('utf-8')
     self.issue = self.connector.get_issue(self.branch_name)
     try:
       self.make_diff()
@@ -21,8 +22,9 @@ class PostCommitHook():
       self.change_status()
 
   def make_diff(self):
-    arc_result = check_output(['arc','diff'])
-    l.info(arc_result)
+    pass
+    #arc_result = check_output(['arc','diff'])
+    #l.info(arc_result)
 
   def make_comment(self):
     self.connector.add_comment(self.issue, 'New commit and new review in differential!')

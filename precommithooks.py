@@ -12,7 +12,7 @@ class PreCommitHook():
 
   def update_message(self):
     branch_name = check_output(['git','symbolic-ref','--short','HEAD'])
-
+    branch_name = branch_name.strip().decode('utf-8')
     connector = jiraconnector.JiraConnector()
     issue = connector.get_issue(branch_name)
 

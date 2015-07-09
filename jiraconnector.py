@@ -28,8 +28,7 @@ class JiraConnector():
     l.debug("NEW COMMENT: %s"%(msg))
 
   def set_review_status(self,issue):
-    status = self.jira.status(10101)
-    issue.update(fields={"status":status})
+    self.jira.transition_issue(issue,741)
 
 if __name__ == "__main__":
   jira_connector = JiraConnector()
